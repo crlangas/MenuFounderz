@@ -29,5 +29,15 @@ function iniciar() {
         }
     });
 
-    let ofrecemosBTN = document.querySelector('#ofrecemosBTN');
+    let ofrecemosBTN = document.querySelector('#ofrecemosBTN, #menuOculto');
+    ofrecemosBTN.addEventListener('mouseover', () => {
+        const menuOculto = document.getElementById('menuOculto');
+        menuOculto.classList.remove('hidden');
+        menuOculto.classList.add('monstMenu');
+    });
+    ofrecemosBTN.addEventListener('mouseout', () => {
+        const menuOculto = document.getElementById('menuOculto');
+        menuOculto.classList.remove('monstMenu');
+        menuOculto.classList.add('hidden');
+    });
 };

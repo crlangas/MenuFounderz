@@ -7,7 +7,7 @@
 
 /* Estilos del body: fondo negro y fuente Arial */
 body{
-    background-color: black;
+    background-color: rgba(0, 0, 0, 0.850);
     font-family: Arial, sans-serif;
 }
 
@@ -23,8 +23,11 @@ nav{
     background-color: white;
     border-radius: 20px;
     width: 80%;
-    transition: 500ms;
+    transition: background-color 500ms ease;
     height: 5em;
+}
+.scrolled{
+    background-color: rgba(255, 255, 255, 0.850);
 }
 
 /* Contenedor del logo con posición relativa para superponer imágenes */
@@ -67,8 +70,28 @@ nav{
     width: 20%;
     height: 50%;
     align-self: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    
+}
+#menuIzq a{
+  border: 2px solid black;
 }
 
+#menuIzq a:first-child:hover{
+  border: 2px solid black;
+  background-color: black;
+  color: white;
+  transition: 500ms;
+}
+
+#menuIzq a:last-child:hover{
+  border: 2px solid black;
+  background-color: rgb(249, 120, 69);
+  color: white;
+  transition: 500ms;
+}
 /* Enlaces de menú sin decoración */
 #menuDer a, #menuIzq a{
     text-decoration: none;
@@ -85,7 +108,7 @@ nav{
 }
 
 /* Hover de enlaces: cambia a blanco con fondo morado */
-#menuDer a:hover, #menuIzq a:hover{
+#menuDer a:hover{
     text-decoration: none;
     color: white;
     font-size: 15px;
@@ -139,9 +162,51 @@ nav{
   display: block;
 }
 
+.monstMenu{
+    display: inline-block;
+    position: fixed;
+    top: 9.5%;
+    left: 10%;
+    width: 80%;
+    background-color: white;
+    padding: 1em;
+    border-radius: 10px;
+    z-index: 0;
+    transition: background-color 500ms ease;
+}
+
+#menuOculto.scrolled {
+    background-color: rgba(255, 255, 255, 0.850);
+}
+
+
+.monstMenu div{
+    padding: 0.5em;
+    border-radius: 50px;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+}
+
+
+#menuOculto div a{
+    text-decoration: none;
+    color: black;
+    font-size: 15px;
+    margin: 0;
+}
+
+#menuOculto a:hover{
+    text-decoration: none;
+    font-size: 15px;
+    color: #5045c8;
+    transition: 500ms;
+}
+
+
 /* Clase para ocultar con opacidad 0 */
 .hidden {
   opacity: 0;
+  visibility: hidden;
+  display: none;
 }
 
 /* Media query para móvil: ajusta logo y oculta botones */
