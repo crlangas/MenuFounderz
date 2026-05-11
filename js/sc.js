@@ -48,33 +48,48 @@ function iniciar() {
         menuOculto.classList.add('hidden');
     }
 
-    // El botón muestra el menú
-    ofrecemosBTN.addEventListener('mouseenter', mostrarMenu);
+    // Detectar si es móvil
+    const isMobile = window.innerWidth <= 767;
 
-    // El menú se mantiene abierto mientras el ratón está dentro
-    menuOculto.addEventListener('mouseenter', mostrarMenu);
+    if (isMobile) {
+        // En móvil: usar click para toggle
+        ofrecemosBTN.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            if (menuOculto.classList.contains('hidden')) {
+                mostrarMenu();
+            } else {
+                ocultarMenu();
+            }
+        });
 
-    // Solo se oculta al salir de cada elemento
-    ofrecemosBTN.addEventListener('mouseleave', (e) => {
-        // Si el ratón va hacia el menú, no ocultamos
-        if (!menuOculto.contains(e.relatedTarget)) {
-            ocultarMenu();
-        }
-    });
+        // Ocultar al hacer click fuera
+        document.addEventListener('click', (e) => {
+            if (!ofrecemosBTN.contains(e.target) && !menuOculto.contains(e.target)) {
+                ocultarMenu();
+            }
+        });
+    } else {
+        // En desktop: usar hover
+        // El botón muestra el menú
+        ofrecemosBTN.addEventListener('mouseenter', mostrarMenu);
 
-    menuOculto.addEventListener('mouseleave', (e) => {
-        // Si el ratón va hacia el botón, no ocultamos
-        if (!ofrecemosBTN.contains(e.relatedTarget)) {
-            ocultarMenu();
-        }
-    });
+        // El menú se mantiene abierto mientras el ratón está dentro
+        menuOculto.addEventListener('mouseenter', mostrarMenu);
 
-    ofrecemosBTN.addEventListener('click', (e) => {
-        e.preventDefault();
-        if (menuOculto.classList.contains('hidden')) {
-            mostrarMenu();
-            return
-        }
-        ocultarMenu();
-    });
+        // Solo se oculta al salir de cada elemento
+        ofrecemosBTN.addEventListener('mouseleave', (e) => {
+            // Si el ratón va hacia el menú, no ocultamos
+            if (!menuOculto.contains(e.relatedTarget)) {
+                ocultarMenu();
+            }
+        });
+
+        menuOculto.addEventListener('mouseleave', (e) => {
+            // Si el ratón va hacia el botón, no ocultamos
+            if (!ofrecemosBTN.contains(e.relatedTarget)) {
+                ocultarMenu();
+            }
+        });
+    }
 }

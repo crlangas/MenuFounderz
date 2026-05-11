@@ -221,7 +221,7 @@ nav{
 }
 
 /* Media query para tablet: ajusta logo y menú, oculta botones */
-@media only screen and (min-width: 768px) and (max-width: 991px) {
+@media only screen and (min-width: 768px) and (max-width: 1200px) {
     nav img {
         width: 80%;
     }
